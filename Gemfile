@@ -14,14 +14,9 @@ gem 'uglifier'
 
 gem 'jquery-rails'
 
-# Use unicorn as the web server
-# gem 'unicorn'
+gem 'simple_form'
 
-# Deploy with Capistrano
-# gem 'capistrano'
-
-# To use debugger
-# gem 'ruby-debug19', :require => 'ruby-debug'
+gem 'rdiscount'
 
 group :test do
   # Pretty printed test output

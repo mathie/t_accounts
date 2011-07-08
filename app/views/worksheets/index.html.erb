@@ -1,0 +1,15 @@
+<h1>Worksheets</h1>
+
+<p>
+  Here's a list of all your worksheets. Pick one to see it, or create a new
+  one.
+</p>
+
+<dl>
+  <% @worksheets.each do |worksheet| %>
+    <dt><%= link_to worksheet.name, worksheet %></dt>
+    <dd><%= markdown worksheet.narrative %></dd>
+  <% end %>
+</dl>
+
+<p><%= link_to "Create a new worksheet", new_worksheet_path %></p>
