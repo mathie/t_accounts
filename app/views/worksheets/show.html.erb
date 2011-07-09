@@ -1,0 +1,17 @@
+<header>
+  <h1><%= @worksheet.name %></h1>
+</header>
+
+<section id="narrative">
+  <h2>Narrative</h2>
+
+  <%= markdown @worksheet.narrative %>
+</section>
+
+<section id="tables">
+  <h2>T-Tables</h2>
+
+  <% 4.times do %>
+    <%= render :partial => 't_table' %>
+  <% end %>
+</section>

@@ -6,6 +6,11 @@ class WorksheetsController < ApplicationController
     respond_with(@worksheets)
   end
 
+  def show
+    @worksheet = Worksheet.find(params[:id])
+    respond_with(@worksheet)
+  end
+
   def new
     @worksheet = Worksheet.new
     respond_with(@worksheet)

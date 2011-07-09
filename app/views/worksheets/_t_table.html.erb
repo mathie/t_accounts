@@ -1,0 +1,77 @@
+  <table class="span-12 <%= cycle '', 'last' %>">
+    <caption>Sales Account</caption>
+    <thead>
+      <tr class="drcr">
+        <th colspan="4">Dr</th>
+        <th colspan="4">Cr</th>
+      </tr>
+
+      <tr>
+        <th>Date</th>
+        <th colspan="2">&nbsp;</th>
+        <th>&pound;</th>
+
+        <th>Date</th>
+        <th colspan="2">&nbsp;</th>
+        <th>&pound;</th>
+      </tr>
+    </thead>
+
+    <tfoot>
+      <tr>
+        <td colspan="3">Subtotal debits</td>
+        <td class="currency"><%= number_to_currency 30_000 %></td>
+
+        <td colspan="3">Subtotal credits</td>
+        <td class="currency"><%= number_to_currency 14_000 %></td>
+      </tr>
+
+      <tr>
+        <td colspan="4">&nbsp;</td>
+
+        <td colspan="3">Balance carried down</td>
+        <td class="currency"><%= number_to_currency 16_000 %></td>
+      </tr>
+
+      <tr>
+        <td colspan="3">Total</td>
+        <td class="currency"><%= number_to_currency 30_000 %></td>
+
+        <td colspan="3">Total</td>
+        <td class="currency"><%= number_to_currency 30_000 %></td>
+      </tr>
+
+      <tr>
+        <td colspan="3">Balance brought down</td>
+        <td class="currency"><%= number_to_currency 16_000 %></td>
+
+        <td colspan="4">&nbsp;</td>
+      </tr>
+    </tfoot>
+
+    <tbody>
+      <tr>
+        <td><time datetime="2011-01-01">1 Jan</time></td>
+        <td>Capital</td>
+        <td>(1)</td>
+        <td class="currency"><%= number_to_currency 20_000.abs %></td>
+
+        <td><time datetime="2011-01-01">1 Jan</time></td>
+        <td>Van</td>
+        <td>(2)</td>
+        <td class="currency"><%= number_to_currency 500.abs %></td>
+      </tr>
+
+      <tr>
+        <td><time datetime="2011-01-01">1 Jan</time></td>
+        <td>Capital</td>
+        <td>(1)</td>
+        <td class="currency"><%= number_to_currency 20_000.abs %></td>
+
+        <td><time datetime="2011-01-01">1 Jan</time></td>
+        <td>Van</td>
+        <td>(2)</td>
+        <td class="currency"><%= number_to_currency 500.abs %></td>
+      </tr>
+    </tbody>
+  </table>
