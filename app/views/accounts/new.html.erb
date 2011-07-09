@@ -1,0 +1,11 @@
+<header>
+  <h1>Create a new account</h1>
+</header>
+
+<p>
+  An account is somewhere that a transaction is credited or debited from. It
+  can be a real thing like a bank account or it can be a virtual entity, like
+  a trade debtors account for keeping track of people who owe you money.
+</p>
+
+<%= render :partial => 'form', :locals => { :worksheet => @worksheet, :account => @account } %>

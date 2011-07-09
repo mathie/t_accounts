@@ -1,0 +1,19 @@
+<%= simple_form_for [worksheet, account] do |f| %>
+  <fieldset>
+    <legend>Account</legend>
+
+    <p>
+      <%= f.label :code %> <%= f.error :code %><br>
+      <%= f.input_field :code, :placeholder => '001', :class => 'title' %><br>
+      <%= f.hint 'Account code. Not terribly important at this stage, but we show accounts ordered by code, so you might want to choose on that basis.' %>
+    </p>
+
+    <p>
+      <%= f.label :name %> <%= f.error :name %><br>
+      <%= f.input_field :name, :placeholder => 'Account name', :class => 'title' %><br>
+      <%= f.hint 'Give the account a name. This is how we will refer to it when adding transactions later.' %>
+    </p>
+
+    <%= f.submit %>
+  </fieldset>
+<% end %>

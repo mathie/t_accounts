@@ -12,13 +12,14 @@
   <ul>
     <li><%= link_to "Edit the worksheet details", [:edit, @worksheet] %></li>
     <li><%= link_to "Delete this worksheet", @worksheet, method: :delete, confirm: "Are you sure you want to delete the worksheet? You will lose all of the data associated with it." %></li>
+    <li><%= link_to "Create a new account", new_worksheet_account_path(@worksheet) %></li>
   </ul>
 </nav>
 
 <section id="tables" class="span-24 last">
-  <h2>T-Tables</h2>
+  <h2>T Accounts</h2>
 
-  <% 4.times do %>
-    <%= render :partial => 'accounts/account' %>
+  <% @worksheet.accounts.each do |account| %>
+    <%= render account %>
   <% end %>
 </section>

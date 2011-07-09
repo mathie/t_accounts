@@ -10,7 +10,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110708212546) do
+ActiveRecord::Schema.define(:version => 20110709144457) do
+
+  create_table "accounts", :force => true do |t|
+    t.string   "name",                      :null => false
+    t.string   "code",         :limit => 3, :null => false
+    t.integer  "worksheet_id",              :null => false
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
+  end
+
+  add_index "accounts", ["worksheet_id", "code"], :name => "index_accounts_on_worksheet_id_and_code", :unique => true
+  add_index "accounts", ["worksheet_id", "name"], :name => "index_accounts_on_worksheet_id_and_name", :unique => true
 
   create_table "worksheets", :force => true do |t|
     t.string   "name",       :null => false
