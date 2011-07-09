@@ -26,10 +26,11 @@ class Transaction < ActiveRecord::Base
   def decrement_previous_subsequent_transaction_positions
     self.class.update_all 'position = position - 1', ['worksheet_id = ? AND position > ?', worksheet_id, position]
   end
+
   def max_position_for_dated_on
-    max_position = self.class.find(:first,
-      :select => 'MAX(position) as max_position',
-      :conditions => ['worksheet_id = ? AND dated_on <= ?', worksheet_id, dated_on]
+    max_position = self.class.unscoped.find(:first,
+      select:     'MAX(position) as max_position',
+      conditions: ['worksheet_id = ? AND dated_on <= ?', worksheet_id, dated_on]
     ).max_position
 
     (max_position || 0) + 1
