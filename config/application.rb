@@ -38,5 +38,9 @@ module TAccounts
 
     # Enable the asset pipeline
     config.assets.enabled = true
+
+    config.generators do |g|
+      g.test_framework :rspec, view_specs: false, fixture: false
+    end
   end
 end
