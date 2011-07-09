@@ -2,13 +2,19 @@
   <h1><%= @worksheet.name %></h1>
 </header>
 
-<section id="narrative">
+<section id="narrative" class="span-15 colborder">
   <h2>Narrative</h2>
 
   <%= markdown @worksheet.narrative %>
 </section>
 
-<section id="tables">
+<nav id="worksheet-navigation" class="span-8 last">
+  <ul>
+    <li><%= link_to "Edit the worksheet details", edit_worksheet_path(@worksheet) %></li>
+  </ul>
+</nav>
+
+<section id="tables" class="span-24 last">
   <h2>T-Tables</h2>
 
   <% 4.times do %>
