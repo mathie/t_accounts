@@ -40,7 +40,8 @@ module TAccounts
     config.assets.enabled = true
 
     config.generators do |g|
-      g.test_framework :rspec, view_specs: false, fixture: false
+      g.test_framework :rspec, view_specs: false
+      g.fixture_replacement :machinist
     end
   end
 end

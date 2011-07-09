@@ -10,4 +10,9 @@ Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 RSpec.configure do |config|
   config.mock_with :rspec
   config.use_transactional_fixtures = true
+
+  # Machinist is naughty and leaks data between tests. This is a fundamentally
+  # bad thing and I'll be having words with Tom about recommending it based
+  # upon that...
+  config.before(:each) { Machinist.reset_before_test }
 end
