@@ -1,0 +1,5 @@
+<header>
+  <h1>Edit account <%= @account.name %></h1>
+</header>
+
+<%= render :partial => 'form', :locals => { :worksheet => @worksheet, :account => @account } %>
