@@ -18,9 +18,9 @@ gem 'simple_form'
 
 gem 'rdiscount'
 gem 'foreman'
+gem 'unicorn'
 
 group :development do
-  gem 'unicorn'
   gem 'heroku', :require => false
 end
 
