@@ -18,6 +18,10 @@ gem 'simple_form'
 
 gem 'rdiscount'
 
+group :development do
+  gem 'unicorn'
+end
+
 group :test do
   # Pretty printed test output
   gem 'turn', :require => false
