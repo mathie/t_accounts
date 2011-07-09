@@ -2,7 +2,10 @@
 <html>
 <head>
   <title>TTables</title>
-  <%= stylesheet_link_tag    "application" %>
+  <%= stylesheet_link_tag "application" %>
+  <!--[if lt IE 8]>
+    <%= stylesheet_link_tag    "blueprint/ie" %>
+  <![endif]-->
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
