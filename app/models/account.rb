@@ -1,4 +1,6 @@
 class Account < ActiveRecord::Base
+  extend ActiveSupport::Memoizable
+
   belongs_to :worksheet
   has_many :credit_transactions, class_name: 'Transaction', foreign_key: 'credit_account_id'
   has_many :debit_transactions,  class_name: 'Transaction', foreign_key: 'debit_account_id'
@@ -28,48 +30,60 @@ class Account < ActiveRecord::Base
       credit_transactions.zip(debit_transactions).map { |a, b| [b, a] }
     end
   end
+  memoize :zipped_transactions
 
   def debits_subtotal
     debit_transactions.sum :amount
   end
+  memoize :debits_subtotal
 
   def credits_subtotal
     credit_transactions.sum :amount
   end
+  memoize :credits_subtotal
 
   def balance_carried_down?
     debit_balance_carried_down? || credit_balance_carried_down?
   end
+  memoize :balance_carried_down?
 
   def debit_balance_carried_down?
     debits_subtotal < credits_subtotal
   end
+  memoize :debit_balance_carried_down?
 
   def credit_balance_carried_down?
     debits_subtotal > credits_subtotal
   end
+  memoize :credit_balance_carried_down?
 
   def balance_carried_down
     (credits_subtotal - debits_subtotal).abs
   end
+  memoize :balance_carried_down
 
   def debit_balance_brought_down?
     debits_subtotal > credits_subtotal
   end
+  memoize :debit_balance_brought_down?
 
   def credit_balance_brought_down?
     debits_subtotal < credits_subtotal
   end
+  memoize :credit_balance_brought_down?
 
   def balance_brought_down?
     debit_balance_brought_down? || credit_balance_brought_down?
   end
+  memoize :balance_brought_down?
 
   def balance_brought_down
     balance_carried_down
   end
+  memoize :balance_brought_down
 
   def total
     [credits_subtotal, debits_subtotal].max
   end
+  memoize :total
 end
