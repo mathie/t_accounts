@@ -11,7 +11,7 @@
     <p>
       <%= f.label :narrative %> <%= f.error :narrative %><br>
       <%= f.input_field :narrative %><br>
-      <%= f.hint 'Describe what the set of transactions is demonstrating.' %>
+      <%= f.hint 'Describe what the set of transactions is demonstrating. The description should be in Markdown format, and just to be on the safe side, we will escape any horrible HTML you decide to insert.' %>
     </p>
 
     <%= f.submit %>
