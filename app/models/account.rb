@@ -22,7 +22,11 @@ class Account < ActiveRecord::Base
   end
 
   def zipped_transactions
-    debit_transactions.zip(credit_transactions)
+    if debit_transactions.length >= credit_transactions.length
+      debit_transactions.zip(credit_transactions)
+    else
+      credit_transactions.zip(debit_transactions).map { |a, b| [b, a] }
+    end
   end
 
   def debits_subtotal
@@ -55,6 +59,10 @@ class Account < ActiveRecord::Base
 
   def credit_balance_brought_down?
     debits_subtotal < credits_subtotal
+  end
+
+  def balance_brought_down?
+    debit_balance_brought_down? || credit_balance_brought_down?
   end
 
   def balance_brought_down
