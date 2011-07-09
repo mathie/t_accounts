@@ -36,4 +36,14 @@ class WorksheetsController < ApplicationController
     end
     respond_with(@worksheet)
   end
+
+  def destroy
+    @worksheet = Worksheet.find(params[:id])
+    if @worksheet.destroy
+      flash[:notice] = "Worksheet has been deleted."
+    else
+      flash[:alert] = "Failed to delete the worksheet."
+    end
+    respond_with(@worksheet)
+  end
 end

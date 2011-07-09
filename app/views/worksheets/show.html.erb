@@ -10,7 +10,8 @@
 
 <nav id="worksheet-navigation" class="span-8 last">
   <ul>
-    <li><%= link_to "Edit the worksheet details", edit_worksheet_path(@worksheet) %></li>
+    <li><%= link_to "Edit the worksheet details", [:edit, @worksheet] %></li>
+    <li><%= link_to "Delete this worksheet", @worksheet, method: :delete, confirm: "Are you sure you want to delete the worksheet? You will lose all of the data associated with it." %></li>
   </ul>
 </nav>
 
