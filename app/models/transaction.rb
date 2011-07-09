@@ -33,7 +33,7 @@ class Transaction < ActiveRecord::Base
       conditions: ['worksheet_id = ? AND dated_on <= ?', worksheet_id, dated_on]
     ).max_position
 
-    (max_position || 0) + 1
+    (max_position || '0').to_i + 1
   end
 
   def increment_subsequent_transaction_positions
