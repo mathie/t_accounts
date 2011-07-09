@@ -4,4 +4,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-TTables::Application.load_tasks
+TAccounts::Application.load_tasks
