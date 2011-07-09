@@ -17,9 +17,11 @@ gem 'jquery-rails'
 gem 'simple_form'
 
 gem 'rdiscount'
+gem 'foreman'
 
 group :development do
   gem 'unicorn'
+  gem 'heroku', :require => false
 end
 
 group :development, :test do
