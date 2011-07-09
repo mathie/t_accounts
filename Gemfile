@@ -31,6 +31,12 @@ group :development do
   gem 'heroku', :require => false
 end
 
+# FIXME: Hack to give me a JS runtime in production; can be removed once rc5
+# is released.
+group :production do
+  gem 'therubyracer-heroku', '0.8.1.pre3'
+end
+
 group :development, :test do
   gem 'rspec-rails'
   gem 'machinist', '>= 2.0.0.beta2'
