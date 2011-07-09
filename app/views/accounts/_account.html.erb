@@ -20,58 +20,73 @@
     <tfoot>
       <tr>
         <td colspan="3">Subtotal debits</td>
-        <td class="currency"><%= number_to_currency 30_000 %></td>
+        <td class="currency"><%= number_to_currency account.debits_subtotal %></td>
 
         <td colspan="3">Subtotal credits</td>
-        <td class="currency"><%= number_to_currency 14_000 %></td>
+        <td class="currency"><%= number_to_currency account.credits_subtotal %></td>
       </tr>
 
-      <tr>
-        <td colspan="4">&nbsp;</td>
+      <% if account.balance_carried_down? %>
+        <tr>
+          <% if account.debit_balance_carried_down? %>
+            <td colspan="3">Balance carried down</td>
+            <td class="currency"><%= number_to_currency account.balance_carried_down %></td>
+          <% else %>
+            <td colspan="4">&nbsp;</td>
+          <% end %>
 
-        <td colspan="3">Balance carried down</td>
-        <td class="currency"><%= number_to_currency 16_000 %></td>
-      </tr>
-
+          <% if account.credit_balance_carried_down? %>
+            <td colspan="3">Balance carried down</td>
+            <td class="currency"><%= number_to_currency account.balance_carried_down %></td>
+          <% else %>
+            <td colspan="4">&nbsp;</td>
+          <% end %>
+        </tr>
+      <% end %>
       <tr>
         <td colspan="3">Total</td>
-        <td class="currency"><%= number_to_currency 30_000 %></td>
+        <td class="currency"><%= number_to_currency account.total %></td>
 
         <td colspan="3">Total</td>
-        <td class="currency"><%= number_to_currency 30_000 %></td>
+        <td class="currency"><%= number_to_currency account.total %></td>
       </tr>
 
       <tr>
-        <td colspan="3">Balance brought down</td>
-        <td class="currency"><%= number_to_currency 16_000 %></td>
+        <% if account.credit_balance_brought_down? %>
+          <td colspan="4">&nbsp;</td>
 
-        <td colspan="4">&nbsp;</td>
+          <td colspan="3">Balance brought down</td>
+          <td class="currency"><%= number_to_currency account.balance_brought_down %></td>
+        <% else %>
+          <td colspan="3">Balance brought down</td>
+          <td class="currency"><%= number_to_currency account.balance_brought_down %></td>
+
+          <td colspan="4">&nbsp;</td>
+        <% end %>
       </tr>
     </tfoot>
 
     <tbody>
-      <tr>
-        <td><time datetime="2011-01-01">1 Jan</time></td>
-        <td>Capital</td>
-        <td>(1)</td>
-        <td class="currency"><%= number_to_currency 20_000.abs %></td>
+      <% account.zipped_transactions.each do |debit_transaction, credit_transaction| %>
+        <tr>
+          <% if debit_transaction.present? %>
+            <td><time datetime="<%= debit_transaction.dated_on.to_s(:db) %>"><%= debit_transaction.dated_on.to_s(:short) %></time></td>
+            <td><%= debit_transaction.description %></td>
+            <td>(<%= debit_transaction.position %>)</td>
+            <td class="currency"><%= number_to_currency debit_transaction.amount %></td>
+          <% else %>
+            <td colspan="4">&nbsp;</td>
+          <% end %>
 
-        <td><time datetime="2011-01-01">1 Jan</time></td>
-        <td>Van</td>
-        <td>(2)</td>
-        <td class="currency"><%= number_to_currency 500.abs %></td>
-      </tr>
-
-      <tr>
-        <td><time datetime="2011-01-01">1 Jan</time></td>
-        <td>Capital</td>
-        <td>(1)</td>
-        <td class="currency"><%= number_to_currency 20_000.abs %></td>
-
-        <td><time datetime="2011-01-01">1 Jan</time></td>
-        <td>Van</td>
-        <td>(2)</td>
-        <td class="currency"><%= number_to_currency 500.abs %></td>
-      </tr>
+          <% if credit_transaction.present? %>
+            <td><time datetime="<%= credit_transaction.dated_on.to_s(:db) %>"><%= credit_transaction.dated_on.to_s(:short) %></time></td>
+            <td><%= credit_transaction.description %></td>
+            <td>(<%= credit_transaction.position %>)</td>
+            <td class="currency"><%= number_to_currency credit_transaction.amount %></td>
+          <% else %>
+            <td colspan="4">&nbsp;</td>
+          <% end %>
+        </tr>
+      <% end %>
     </tbody>
   </table>
