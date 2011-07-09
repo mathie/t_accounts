@@ -5,7 +5,14 @@ gem 'rails', '3.1.0.rc4'
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
 
-gem 'mysql2'
+# Yes, I am insane, I know. It's to do with Lion shipping a neutered copy of
+# PostgreSQL and me being stupid enough to use the Lion DPs.
+group :development, :test do
+  gem 'mysql2'
+end
+group :production do
+  gem 'pg'
+end
 
 # Asset template engines
 gem 'sass-rails', "~> 3.1.0.rc"
@@ -18,7 +25,7 @@ gem 'simple_form'
 
 gem 'rdiscount'
 gem 'foreman'
-gem 'unicorn'
+gem 'thin'
 
 group :development do
   gem 'heroku', :require => false
