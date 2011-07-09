@@ -26,9 +26,4 @@ class AccountsController < ApplicationController
     end
     respond_with(@worksheet, @account, location: @worksheet)
   end
-
-  private
-  def load_worksheet
-    @worksheet = Worksheet.find(params[:worksheet_id])
-  end
 end

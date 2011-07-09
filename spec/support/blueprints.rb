@@ -24,3 +24,7 @@ Account.blueprint do
   # Code is three digits.
   code { sn.last(3) }
 end
+
+Transaction.blueprint do
+  # Attributes here
+end

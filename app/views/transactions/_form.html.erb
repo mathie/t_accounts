@@ -1,0 +1,39 @@
+<%= simple_form_for [worksheet, transaction] do |f| %>
+  <fieldset>
+    <legend>Details</legend>
+
+    <p>
+      <%= f.label :dated_on, 'Date' %> <%= f.error :dated_on %><br>
+      <%= f.input_field :dated_on %><br>
+      <%= f.hint 'The date the transaction took place.' %>
+    </p>
+
+    <p>
+      <%= f.label :description %> <%= f.error :description %><br>
+      <%= f.input_field :description, :placeholder => 'Purchase 15,000 units of stock', :class => 'title' %><br>
+      <%= f.hint 'A useful description of the transaction that took place.' %>
+    </p>
+
+    <p>
+      <%= f.label :amount %> <%= f.error :amount %><br>
+      <%= f.input_field :amount, :placeholder => '15.99', :class => 'title' %><br>
+      <%= f.hint 'The gross value of the transaction.' %>
+    </p>
+  </fieldset>
+
+  <fieldset>
+    <legend>Accounts</legend>
+
+    <p>
+      <%= f.label :debit_account_id %> <%= f.error :debit_account_id %><br>
+      <%= f.input_field :debit_account_id, :collection => worksheet.accounts %>
+    </p>
+
+    <p>
+      <%= f.label :credit_account_id %> <%= f.error :credit_account_id %><br>
+      <%= f.input_field :credit_account_id, :collection => worksheet.accounts %>
+    </p>
+  </fieldset>
+
+  <%= f.submit %>
+<% end %>

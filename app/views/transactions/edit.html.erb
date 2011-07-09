@@ -1,0 +1,5 @@
+<header>
+  <h1>Edit transaction <%= @transaction.description %></h1>
+</header>
+
+<%= render :partial => 'form', :locals => { :worksheet => @worksheet, :transaction => @transaction } %>

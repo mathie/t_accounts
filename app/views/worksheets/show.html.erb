@@ -13,6 +13,7 @@
     <li><%= link_to "Edit the worksheet details", [:edit, @worksheet] %></li>
     <li><%= link_to "Delete this worksheet", @worksheet, method: :delete, confirm: "Are you sure you want to delete the worksheet? You will lose all of the data associated with it." %></li>
     <li><%= link_to "Create a new account", new_worksheet_account_path(@worksheet) %></li>
+    <li><%= link_to "Create a new transaction", new_worksheet_transaction_path(@worksheet) %></li>
   </ul>
 </nav>
 
@@ -22,4 +23,24 @@
   <% @worksheet.accounts.each do |account| %>
     <%= render account %>
   <% end %>
+</section>
+
+<section id="transactions" class="span-24 last">
+  <h2>Transactions</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th>&nbsp;</th>
+        <th>Date</th>
+        <th>Description</th>
+        <th class="currency">Amount</th>
+        <th>&nbsp;</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <%= render :partial => @worksheet.transactions %>
+    </tbody>
+  </table>
 </section>

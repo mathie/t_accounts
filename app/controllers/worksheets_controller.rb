@@ -7,7 +7,7 @@ class WorksheetsController < ApplicationController
   end
 
   def show
-    @worksheet = Worksheet.includes(:accounts).find(params[:id])
+    @worksheet = Worksheet.includes(:accounts, { transactions: [:debit_account, :credit_account] }).find(params[:id])
     respond_with(@worksheet)
   end
 

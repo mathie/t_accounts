@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110709144457) do
+ActiveRecord::Schema.define(:version => 20110709164349) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name",                      :null => false
@@ -22,6 +22,18 @@ ActiveRecord::Schema.define(:version => 20110709144457) do
 
   add_index "accounts", ["worksheet_id", "code"], :name => "index_accounts_on_worksheet_id_and_code", :unique => true
   add_index "accounts", ["worksheet_id", "name"], :name => "index_accounts_on_worksheet_id_and_name", :unique => true
+
+  create_table "transactions", :force => true do |t|
+    t.date     "dated_on",                                         :null => false
+    t.string   "description",                                      :null => false
+    t.integer  "position",                                         :null => false
+    t.integer  "debit_account_id",                                 :null => false
+    t.integer  "credit_account_id",                                :null => false
+    t.integer  "worksheet_id",                                     :null => false
+    t.decimal  "amount",            :precision => 16, :scale => 8, :null => false
+    t.datetime "created_at",                                       :null => false
+    t.datetime "updated_at",                                       :null => false
+  end
 
   create_table "worksheets", :force => true do |t|
     t.string   "name",       :null => false

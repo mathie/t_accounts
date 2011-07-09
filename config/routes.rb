@@ -1,6 +1,6 @@
 TAccounts::Application.routes.draw do
   resources :worksheets do
-    resources :accounts
+    resources :accounts, :transactions
   end
 
   root :to => 'worksheets#index'

@@ -6,6 +6,8 @@ class Account < ActiveRecord::Base
   validates :name, presence: true, uniqueness: { scope: :worksheet_id }
   validates :code, presence: true, uniqueness: { scope: :worksheet_id }, length: { is: 3 }, format: { with: /^\d{3}$/ }
 
+  attr_accessible :name, :code
+
   def code=(new_code)
     # Only zero-pad the code if it's valid in the first place. We still get
     # called with invalid codes.
