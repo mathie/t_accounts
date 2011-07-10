@@ -1,26 +1,26 @@
 <header>
-  <h1><%= @worksheet.name %></h1>
+  <h1 class="span-12"><%= @worksheet.name %></h1>
+
+  <nav id="worksheet-navigation" class="span-12 last">
+    <p style="text-align:right">
+      <%= link_to "New account", new_worksheet_account_path(@worksheet), class: 'button new' %>
+      <%= link_to "New transaction", new_worksheet_transaction_path(@worksheet), class: 'button new' %>
+      <%= link_to "Edit", [:edit, @worksheet], class: 'button edit' %>
+      <%= link_to "Delete", @worksheet, class: 'button delete', method: :delete, confirm: "Are you sure you want to delete the worksheet? You will lose all of the data associated with it." %>
+    </p>
+  </nav>
 </header>
 
-<section id="narrative" class="span-15 colborder">
-  <h2>Narrative</h2>
-
-  <%= markdown @worksheet.narrative %>
-</section>
-
-<nav id="worksheet-navigation" class="span-8 last">
-  <ul>
-    <li><%= link_to "Edit the worksheet details", [:edit, @worksheet] %></li>
-    <li><%= link_to "Delete this worksheet", @worksheet, method: :delete, confirm: "Are you sure you want to delete the worksheet? You will lose all of the data associated with it." %></li>
-    <li><%= link_to "Create a new account", new_worksheet_account_path(@worksheet) %></li>
-    <li><%= link_to "Create a new transaction", new_worksheet_transaction_path(@worksheet) %></li>
-  </ul>
-</nav>
 
 <div id="worksheet-tabs" class="span-24 last">
   <ul>
+    <li><%= link_to 'Overview', '#narrative' %></li>
     <li><%= link_to 'Transactions', worksheet_transactions_path(@worksheet) %></li>
     <li><%= link_to 'T Accounts', worksheet_accounts_path(@worksheet) %></li>
     <li><%= link_to 'Trial Balance', trial_balance_worksheet_path(@worksheet) %></li>
   </ul>
+
+  <section id="narrative">
+    <%= markdown @worksheet.narrative %>
+  </section>
 </div>
