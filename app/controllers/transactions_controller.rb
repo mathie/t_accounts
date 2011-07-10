@@ -3,6 +3,13 @@ class TransactionsController < ApplicationController
 
   before_filter :load_worksheet
 
+  def index
+    respond_to do |format|
+      format.js { render partial: 'transactions', content_type: :html, locals: { transactions: @worksheet.transactions } }
+      format.html { redirect_to @worksheet }
+    end
+  end
+
   def new
     @transaction = @worksheet.transactions.build
     respond_with(@transaction)

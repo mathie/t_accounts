@@ -19,14 +19,8 @@
 
 <div id="worksheet-tabs" class="span-24 last">
   <ul>
-    <li><a href="#t-accounts">T Accounts</a></li>
-    <li><a href="#transactions">Transactions</a></li>
-    <li><a href="#trial-balance">Trial Balance</a></li>
+    <li><%= link_to 'Transactions', worksheet_transactions_path(@worksheet) %></li>
+    <li><%= link_to 'T Accounts', worksheet_accounts_path(@worksheet) %></li>
+    <li><%= link_to 'Trial Balance', trial_balance_worksheet_path(@worksheet) %></li>
   </ul>
-
-  <%= render 't_accounts', accounts: @worksheet.accounts %>
-
-  <%= render 'transactions', transactions: @worksheet.transactions %>
-
-  <%= render 'trial_balance', worksheet: @worksheet %>
 </div>

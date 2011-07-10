@@ -11,6 +11,14 @@ class WorksheetsController < ApplicationController
     respond_with(@worksheet)
   end
 
+  def trial_balance
+    @worksheet = Worksheet.find(params[:id])
+    respond_to do |format|
+      format.js { render partial: 'trial_balance', content_type: :html, locals: { worksheet: @worksheet } }
+      format.html { redirect_to @worksheet }
+    end
+  end
+
   def new
     @worksheet = Worksheet.new
     respond_with(@worksheet)
