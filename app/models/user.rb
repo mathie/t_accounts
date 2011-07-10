@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  has_many :worksheets, :dependent => :destroy
+  has_many :worksheets, dependent: :destroy
 
   devise :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :trackable, :validatable

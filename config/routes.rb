@@ -8,5 +8,5 @@ TAccounts::Application.routes.draw do
     end
   end
 
-  root :to => 'pages#index'
+  root to: 'pages#index'
 end

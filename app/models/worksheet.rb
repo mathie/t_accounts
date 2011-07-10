@@ -1,10 +1,10 @@
 class Worksheet < ActiveRecord::Base
-  has_many :accounts
-  has_many :transactions
+  has_many :accounts,     dependent: :destroy
+  has_many :transactions, dependent: :destroy
   belongs_to :user
 
-  validates :name,      :presence => true
-  validates :narrative, :presence => true
+  validates :name,      presence: true
+  validates :narrative, presence: true
 
   attr_accessible :name, :narrative
 

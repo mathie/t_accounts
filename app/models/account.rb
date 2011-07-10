@@ -2,10 +2,10 @@ class Account < ActiveRecord::Base
   extend ActiveSupport::Memoizable
 
   belongs_to :worksheet
-  has_many :credit_transactions, class_name: 'Transaction', foreign_key: 'credit_account_id'
-  has_many :debit_transactions,  class_name: 'Transaction', foreign_key: 'debit_account_id'
+  has_many :credit_transactions, class_name: 'Transaction', foreign_key: 'credit_account_id', dependent: :nullify
+  has_many :debit_transactions,  class_name: 'Transaction', foreign_key: 'debit_account_id',  dependent: :nullify
 
-  default_scope :order => :code
+  default_scope order: :code
 
   validates :name, presence: true, uniqueness: { scope: :worksheet_id }
   validates :code, presence: true, uniqueness: { scope: :worksheet_id }, length: { is: 3 }, format: { with: /^\d{3}$/ }

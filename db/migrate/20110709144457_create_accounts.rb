@@ -8,7 +8,7 @@ class CreateAccounts < ActiveRecord::Migration
       t.timestamps null: false
     end
 
-    add_index :accounts, [:worksheet_id, :name], :unique => true
-    add_index :accounts, [:worksheet_id, :code], :unique => true
+    add_index :accounts, [:worksheet_id, :name], unique: true
+    add_index :accounts, [:worksheet_id, :code], unique: true
   end
 end

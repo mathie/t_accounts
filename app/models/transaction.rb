@@ -1,9 +1,9 @@
 class Transaction < ActiveRecord::Base
   belongs_to :worksheet
-  belongs_to :debit_account, :class_name => 'Account'
-  belongs_to :credit_account, :class_name => 'Account'
+  belongs_to :debit_account,  class_name: 'Account'
+  belongs_to :credit_account, class_name: 'Account'
 
-  default_scope :order => :position
+  default_scope order: :position
 
   validates :dated_on,          presence: true
   validates :description,       presence: true

@@ -18,17 +18,19 @@
 
     <tbody>
       <% worksheet.accounts.each do |account| %>
-        <tr>
-          <td><%= account.name %></td>
+        <% if account.balance_brought_down? %>
+          <tr>
+            <td><%= account.name %></td>
 
-          <% if account.debit_balance_brought_down? %>
-            <td class="currency"><%= number_to_currency account.balance_brought_down, precision: 0 %></td>
-            <td>&nbsp;</td>
-          <% else %>
-            <td>&nbsp;</td>
-            <td class="currency"><%= number_to_currency account.balance_brought_down, precision: 0 %></td>
-          <% end %>
-        </tr>
+            <% if account.debit_balance_brought_down? %>
+              <td class="currency"><%= number_to_currency account.balance_brought_down, precision: 0 %></td>
+              <td>&nbsp;</td>
+            <% else %>
+              <td>&nbsp;</td>
+              <td class="currency"><%= number_to_currency account.balance_brought_down, precision: 0 %></td>
+            <% end %>
+          </tr>
+        <% end %>
       <% end %>
     </tbody>
   </table>

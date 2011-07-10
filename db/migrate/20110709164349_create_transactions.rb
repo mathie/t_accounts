@@ -16,6 +16,6 @@ class CreateTransactions < ActiveRecord::Migration
     add_index :transactions, :credit_account_id
     add_index :transactions, :worksheet_id
 
-    add_index :transactions, [:worksheet_id, :position], :unique => true
+    add_index :transactions, [:worksheet_id, :position], unique: true
   end
 end

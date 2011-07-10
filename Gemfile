@@ -2,9 +2,6 @@ source 'http://rubygems.org'
 
 gem 'rails', '3.1.0.rc4'
 
-# Bundle edge Rails instead:
-# gem 'rails',     :git => 'git://github.com/rails/rails.git'
-
 # Yes, I am insane, I know. It's to do with Lion shipping a neutered copy of
 # PostgreSQL and me being stupid enough to use the Lion DPs.
 group :development, :test do
@@ -30,7 +27,7 @@ gem 'thin'
 gem 'devise'
 
 group :development do
-  gem 'heroku', :require => false
+  gem 'heroku', require: false
 end
 
 # FIXME: Hack to give me a JS runtime in production; can be removed once rc5
