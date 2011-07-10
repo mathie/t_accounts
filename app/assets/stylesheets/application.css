@@ -6,6 +6,7 @@
  *= require blueprint/grid
  *= require blueprint/typography
  *= require blueprint/forms
+ *= require jquery-ui/jquery-ui
  *= require_self
  *= require_tree . 
 */
