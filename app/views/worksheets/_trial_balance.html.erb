@@ -1,0 +1,37 @@
+<section id="trial-balance">
+  <h2>Trial Balance</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th>&nbsp;</th>
+        <th class="currency">Dr<br>&pound;</th>
+        <th class="currency">Cr<br>&pound;</th>
+      </tr>
+    </thead>
+
+    <tfoot>
+      <tr>
+        <td>Total</td>
+        <td class="currency"><%= number_to_currency worksheet.debits_total %></td>
+        <td class="currency"><%= number_to_currency worksheet.credits_total %></td>
+      </tr>
+    </tfoot>
+
+    <tbody>
+      <% worksheet.accounts.each do |account| %>
+        <tr>
+          <td><%= account.name %></td>
+
+          <% if account.debit_balance_brought_down? %>
+            <td class="currency"><%= number_to_currency account.balance_brought_down %></td>
+            <td>&nbsp;</td>
+          <% else %>
+            <td>&nbsp;</td>
+            <td class="currency"><%= number_to_currency account.balance_brought_down %></td>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</section>
