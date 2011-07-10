@@ -5,6 +5,6 @@ class ApplicationController < ActionController::Base
 
   protected
   def load_worksheet
-    @worksheet = Worksheet.find(params[:worksheet_id])
+    @worksheet = current_user.worksheets.find(params[:worksheet_id])
   end
 end

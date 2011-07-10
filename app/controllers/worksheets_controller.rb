@@ -2,17 +2,17 @@ class WorksheetsController < ApplicationController
   respond_to :html
 
   def index
-    @worksheets = Worksheet.all
+    @worksheets = current_user.worksheets
     respond_with(@worksheets)
   end
 
   def show
-    @worksheet = Worksheet.includes(:accounts, { transactions: [:debit_account, :credit_account] }).find(params[:id])
+    @worksheet = current_user.worksheets.includes(:accounts, { transactions: [:debit_account, :credit_account] }).find(params[:id])
     respond_with(@worksheet)
   end
 
   def trial_balance
-    @worksheet = Worksheet.find(params[:id])
+    @worksheet = current_user.worksheets.find(params[:id])
     respond_to do |format|
       format.js { render partial: 'trial_balance', content_type: :html, locals: { worksheet: @worksheet } }
       format.html { redirect_to @worksheet }
@@ -20,17 +20,17 @@ class WorksheetsController < ApplicationController
   end
 
   def new
-    @worksheet = Worksheet.new
+    @worksheet = current_user.worksheets.build
     respond_with(@worksheet)
   end
 
   def edit
-    @worksheet = Worksheet.find(params[:id])
+    @worksheet = current_user.worksheets.find(params[:id])
     respond_with(@worksheet)
   end
 
   def create
-    @worksheet = Worksheet.new(params[:worksheet])
+    @worksheet = current_user.worksheets.build(params[:worksheet])
     if @worksheet.save
       flash[:notice] = "Worksheet created."
     end
@@ -38,7 +38,7 @@ class WorksheetsController < ApplicationController
   end
 
   def update
-    @worksheet = Worksheet.find(params[:id])
+    @worksheet = current_user.worksheets.find(params[:id])
     if @worksheet.update_attributes(params[:worksheet])
       flash[:notice] = "Worksheet details successfully updated."
     end
@@ -46,7 +46,7 @@ class WorksheetsController < ApplicationController
   end
 
   def destroy
-    @worksheet = Worksheet.find(params[:id])
+    @worksheet = current_user.worksheets.find(params[:id])
     if @worksheet.destroy
       flash[:notice] = "Worksheet has been deleted."
     else
