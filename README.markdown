@@ -26,7 +26,7 @@ new. :)
 
 6. Run the test suite (optional): `bundle exec rake`
 
-7. Run the server: `bundle exec unicorn`
+7. Run the server: `bundle exec foreman start`
 
 ## Disclaimer
 
