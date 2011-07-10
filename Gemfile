@@ -27,6 +27,8 @@ gem 'rdiscount'
 gem 'foreman'
 gem 'thin'
 
+gem 'devise'
+
 group :development do
   gem 'heroku', :require => false
 end

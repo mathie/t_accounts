@@ -1,6 +1,7 @@
 class Worksheet < ActiveRecord::Base
   has_many :accounts
   has_many :transactions
+  belongs_to :user
 
   validates :name,      :presence => true
   validates :narrative, :presence => true

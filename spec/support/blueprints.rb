@@ -16,6 +16,8 @@ cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
 proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
     TEXT
   end
+
+  user
 end
 
 Account.blueprint do
@@ -27,4 +29,10 @@ end
 
 Transaction.blueprint do
   # Attributes here
+end
+
+User.blueprint do
+  email                 { "joe.bloggs+#{sn}@example.com" }
+  password              { "password" }
+  password_confirmation { "password" }
 end

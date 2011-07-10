@@ -1,4 +1,6 @@
 TAccounts::Application.routes.draw do
+  devise_for :users
+
   resources :worksheets do
     resources :accounts, :transactions
     member do
@@ -6,5 +8,5 @@ TAccounts::Application.routes.draw do
     end
   end
 
-  root :to => 'worksheets#index'
+  root :to => 'pages#index'
 end
