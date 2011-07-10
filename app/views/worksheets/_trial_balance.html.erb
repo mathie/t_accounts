@@ -13,8 +13,8 @@
     <tfoot>
       <tr>
         <td>Total</td>
-        <td class="currency"><%= number_to_currency worksheet.debits_total %></td>
-        <td class="currency"><%= number_to_currency worksheet.credits_total %></td>
+        <td class="currency"><%= number_to_currency worksheet.debits_total, precision: 0 %></td>
+        <td class="currency"><%= number_to_currency worksheet.credits_total, precision: 0 %></td>
       </tr>
     </tfoot>
 
@@ -24,11 +24,11 @@
           <td><%= account.name %></td>
 
           <% if account.debit_balance_brought_down? %>
-            <td class="currency"><%= number_to_currency account.balance_brought_down %></td>
+            <td class="currency"><%= number_to_currency account.balance_brought_down, precision: 0 %></td>
             <td>&nbsp;</td>
           <% else %>
             <td>&nbsp;</td>
-            <td class="currency"><%= number_to_currency account.balance_brought_down %></td>
+            <td class="currency"><%= number_to_currency account.balance_brought_down, precision: 0 %></td>
           <% end %>
         </tr>
       <% end %>
