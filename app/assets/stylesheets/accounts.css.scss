@@ -3,13 +3,30 @@ table {
     font-weight: bold;
     text-align: center;
   }
+
+  td.dr.currency {
+    border-right: 1px solid #333;
+  }
+
   thead {
     tr.drcr th {
       text-align: center;
+      width: 50%;
+    }
+
+    tr:last-child th {
+      border-bottom: 1px solid #333;
     }
   }
 
   th.currency, td.currency {
     text-align: right;
+  }
+
+  tfoot {
+    td.total {
+      border-top: 1px solid #333;
+      border-bottom: 1px solid #333;
+    }
   }
 }
