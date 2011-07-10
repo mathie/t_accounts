@@ -3,7 +3,7 @@
 Devise.setup do |config|
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in DeviseMailer.
-  config.mailer_sender = %w{"T Accounts (by Graeme Mathieson)" <mathie+t-accounts@woss.name>}
+  config.mailer_sender = '"T Accounts (by Graeme Mathieson)" <mathie+t-accounts@woss.name>'
 
   # Configure the class responsible to send e-mails.
   # config.mailer = "Devise::Mailer"
