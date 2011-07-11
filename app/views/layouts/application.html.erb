@@ -30,6 +30,7 @@
           <%= link_to 'Home', root_path, class: 'button' %>
           <% if user_signed_in? %>
             <%= link_to 'My Worksheets', worksheets_path, class: 'button' %>
+            <%= link_to 'My Profile', edit_user_registration_path, class: 'button' %>
             <%= link_to 'Sign out', destroy_user_session_path, class: 'button', method: :delete %>
           <% else %>
             <%= link_to 'Sign in', new_user_session_path, class: 'button' %>
