@@ -10,7 +10,7 @@
     </p>
 
     <p>
-      <%= f.label :email %> <%= f.error :email %><br>
+      <%= f.label :email, required: true %> <%= f.error :email %><br>
       <%= f.input_field :email, required: true %><br>
       <%= f.hint 'Let us know your email address. This is used for logging in, and for recovering your password if you forget it.' %>
     </p>
@@ -20,13 +20,13 @@
     <legend>Password</legend>
 
     <p>
-      <%= f.label :password %> <%= f.error :password %><br>
+      <%= f.label :password, required: true %> <%= f.error :password %><br>
       <%= f.input_field :password, required: true %><br>
       <%= f.hint 'Choose a password. Keep it a secret!' %>
     </p>
 
     <p>
-      <%= f.label :password_confirmation %> <%= f.error :password_confirmation %><br>
+      <%= f.label :password_confirmation, required: true %> <%= f.error :password_confirmation %><br>
       <%= f.input_field :password_confirmation, required: true %><br>
       <%= f.hint 'Confirm your password, just to make sure you have typed it correctly.' %>
     </p>

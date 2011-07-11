@@ -40,8 +40,8 @@
     <legend>Current password</legend>
 
     <p>
-      <%= f.label :current_password %> <%= f.error :current_password %><br>
-      <%= f.input_field :current_password %><br>
+      <%= f.label :current_password, required: true %> <%= f.error :current_password %><br>
+      <%= f.input_field :current_password, required: true %><br>
       <%= f.hint 'We need your current password to confirm your changes.' %>
     </p>
   </fieldset>
