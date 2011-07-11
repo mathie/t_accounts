@@ -1,18 +1,43 @@
 <h2>Edit <%= resource_name.to_s.humanize %></h2>
 
 <%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
-  <%= f.error_notification %>
+  <fieldset>
+    <legend>Your details</legend>
 
-  <div class="inputs">
-    <%= f.input :email, :autofocus => true %>
-    <%= f.input :password, :hint => "leave it blank if you don't want to change it", :required => false %>
-    <%= f.input :password_confirmation, :required => false %>
-    <%= f.input :current_password, :hint => "we need your current password to confirm your changes", :required => true %>
-  </div>
+    <p>
+      <%= f.label :email %> <%= f.error :email %><br>
+      <%= f.input_field :email %><br>
+      <%= f.hint 'Let us know your email address. This is used for logging in, and for recovering your password if you forget it.' %>
+    </p>
+  </fieldset>
 
-  <div class="actions">
-    <%= f.button :submit, "Update" %>
-  </div>
+  <fieldset>
+    <legend>Password</legend>
+
+    <p>
+      <%= f.label :password %> <%= f.error :password %><br>
+      <%= f.input_field :password %><br>
+      <%= f.hint 'Choose a password. Keep it a secret!' %>
+    </p>
+
+    <p>
+      <%= f.label :password_confirmation %> <%= f.error :password_confirmation %><br>
+      <%= f.input_field :password_confirmation %><br>
+      <%= f.hint 'Confirm your password, just to make sure you have typed it correctly.' %>
+    </p>
+  </fieldset>
+
+  <fieldset>
+    <legend>Current password</legend>
+
+    <p>
+      <%= f.label :current_password %> <%= f.error :current_password %><br>
+      <%= f.input_field :current_password %><br>
+      <%= f.hint 'We need your current password to confirm your changes.' %>
+    </p>
+  </fieldset>
+
+  <%= f.submit "Update" %>
 <% end %>
 
 <h3>Cancel my account</h3>

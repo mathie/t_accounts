@@ -1,15 +1,15 @@
 <h2>Resend confirmation instructions</h2>
 
 <%= simple_form_for(resource, :as => resource_name, :url => confirmation_path(resource_name), :html => { :method => :post }) do |f| %>
-  <%= f.error_notification %>
+  <fieldset>
+    <p>
+      <%= f.label :email %> <%= f.error :email %><br>
+      <%= f.input_field :email %><br>
+      <%= f.hint 'Let us know your email address. We will send a fresh confirmation link to your address.' %>
+    </p>
+  </fieldset>
 
-  <div class="inputs">
-    <%= f.input :email, :required => true %>
-  </div>
-
-  <div class="actions">
-    <%= f.button :submit, "Resend confirmation instructions" %>
-  </div>
+  <%= f.submit "Resend confirmation instructions" %>
 <% end %>
 
 <%= render :partial => "devise/shared/links" %>

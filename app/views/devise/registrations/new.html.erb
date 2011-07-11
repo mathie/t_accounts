@@ -1,17 +1,33 @@
 <h2>Sign up</h2>
 
 <%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
-  <%= f.error_notification %>
+  <fieldset>
+    <legend>Your details</legend>
 
-  <div class="inputs">
-    <%= f.input :email, :autofocus => true %>
-    <%= f.input :password %>
-    <%= f.input :password_confirmation %>
-  </div>
+    <p>
+      <%= f.label :email %> <%= f.error :email %><br>
+      <%= f.input_field :email %><br>
+      <%= f.hint 'Let us know your email address. This is used for logging in, and for recovering your password if you forget it.' %>
+    </p>
+  </fieldset>
 
-  <div class="actions">
-    <%= f.button :submit, "Sign up" %>
-  </div>
+  <fieldset>
+    <legend>Password</legend>
+
+    <p>
+      <%= f.label :password %> <%= f.error :password %><br>
+      <%= f.input_field :password %><br>
+      <%= f.hint 'Choose a password. Keep it a secret!' %>
+    </p>
+
+    <p>
+      <%= f.label :password_confirmation %> <%= f.error :password_confirmation %><br>
+      <%= f.input_field :password_confirmation %><br>
+      <%= f.hint 'Confirm your password, just to make sure you have typed it correctly.' %>
+    </p>
+  </fieldset>
+
+  <%= f.submit "Sign up" %>
 <% end %>
 
 <%= render :partial => "devise/shared/links" %>
