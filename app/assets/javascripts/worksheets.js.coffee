@@ -3,6 +3,7 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 $ ->
   $('#worksheet-tabs').tabs()
+  $('input[type=date]').datepicker({ dateFormat: 'yy-mm-dd' })
   $('a.button, input:submit').button()
   $('a.button.edit').button('option', 'icons', {primary: 'ui-icon-pencil'})
   $('a.button.delete').button('option', 'icons', { primary: 'ui-icon-trash'})

@@ -4,7 +4,7 @@
 
     <p>
       <%= f.label :dated_on, 'Date' %> <%= f.error :dated_on %><br>
-      <%= f.input_field :dated_on %><br>
+      <%= f.input_field :dated_on, type: :date, as: :string %><br>
       <%= f.hint 'The date the transaction took place.' %>
     </p>
 
