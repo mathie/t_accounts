@@ -1,23 +1,36 @@
 <h2>Sign in</h2>
 
-<%= simple_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
-  <fieldset>
+<div class="row">
+  <div class="span12 columns">
     <p>
-      <%= f.label :email %><br>
-      <%= f.input_field :email %>
+      Enter the email address and password you used to sign up. Once you're
+      signed in, you'll have access to the full functionality of the app. See
+      the links to the right hand side if you're having trouble signing in.
     </p>
 
-    <p>
-      <%= f.label :password %><br>
-      <%= f.input_field :password %>
-    </p>
+    <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+      <%= form_text_input f, :text_field, :email, label: 'Email address', autofocus: true, class: 'xlarge', size: 30 %>
+      <%= form_text_input f, :password_field, :password, label: 'Password', class: 'xlarge', size: 30, hint: link_to("Forgot your password?", new_password_path(resource_name)) %>
 
-    <p>
-      <%= f.input_field :remember_me, as: :boolean %> <%= f.label :remember_me %>
-    </p>
-  </fieldset>
+      <div class="clearfix">
+        <div class="input">
+          <ul class="inputs-list">
+            <li>
+              <label>
+                <%= f.check_box :remember_me %>
+                <span>Remember my login on this computer.</span>
+              </label>
+            </li>
+          </ul>
+        </div>
+      </div>
 
-  <p><%= f.submit "Sign in" %></p>
-<% end %>
+      <div class="actions">
+        <%= f.submit "Sign in", class: 'btn primary' %>
+        <%= link_to 'Cancel', root_path, class: 'btn' %>
+      </div>
+    <% end %>
+  </div>
 
-<%= render :partial => "devise/shared/links" %>
+  <%= render :partial => "devise/shared/links" %>
+</div>

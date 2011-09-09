@@ -1,56 +1,51 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<h2>Edit User</h2>
 
-<%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
-  <fieldset>
-    <legend>Your details</legend>
-
+<div class="row">
+  <div class="span12 columns">
     <p>
-      <%= f.label :name %> <%= f.error :name %><br>
-      <%= f.input_field :name, class: 'title', autofocus: true %>
+      You can update your profile information here. Please remember to enter
+      your current password at the end of the form in order to update the
+      information.
     </p>
 
+    <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
+      <fieldset>
+        <legend>About you</legend>
+
+        <%= form_text_input f, :text_field, :name, autofocus: true, class: 'xlarge', size: 30 %>
+        <%= form_text_input f, :text_field, :email, label: 'Email address', class: 'xlarge', size: 30 %>
+
+      </fieldset>
+
+      <fieldset>
+        <legend>Choose a password</legend>
+
+        <p>
+          You only need to fill in a password here if you want to change your
+          current password.
+        </p>
+
+        <%= form_text_input f, :password_field, :password, label: 'New password', hint: 'Leave password and password confirmation blank if you do not want to change your password', class: 'xlarge', size: 30 %>
+        <%= form_text_input f, :password_field, :password_confirmation, label: 'Confirm your new password', class: 'xlarge', size: 30 %>
+      </fieldset>
+
+      <%= form_text_input f, :password_field, :current_password, label: 'Current password', hint: 'We need your current password in order to update your profile.', class: 'xlarge', size: 30 %>
+
+      <div class="actions">
+        <%= f.submit "Update Profile", class: 'btn primary' %>
+        <%= link_to 'Cancel', root_path, class: 'btn' %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="span4 columns">
+    <h3>Cancel my account</h3>
+
     <p>
-      <%= f.label :email, required: true %> <%= f.error :email %><br>
-      <%= f.input_field :email, required: true %><br>
-      <%= f.hint 'Let us know your email address. This is used for logging in, and for recovering your password if you forget it.' %>
+      If you no longer want to use app, you can
+      <%= link_to "cancel your account", registration_path(resource_name), confirm: "Are you sure?", method: :delete %>.
+      Please be aware that this will immediately and irreversibly delete all
+      the worksheets stored with your account.
     </p>
-  </fieldset>
-
-  <fieldset>
-    <legend>Password</legend>
-
-    <p>
-      Only enter a new password here if you want to change your current
-      password.
-    </p>
-    <p>
-      <%= f.label :password %> <%= f.error :password %><br>
-      <%= f.input_field :password %><br>
-      <%= f.hint 'Choose a password. Keep it a secret!' %>
-    </p>
-
-    <p>
-      <%= f.label :password_confirmation %> <%= f.error :password_confirmation %><br>
-      <%= f.input_field :password_confirmation %><br>
-      <%= f.hint 'Confirm your password, just to make sure you have typed it correctly.' %>
-    </p>
-  </fieldset>
-
-  <fieldset>
-    <legend>Current password</legend>
-
-    <p>
-      <%= f.label :current_password, required: true %> <%= f.error :current_password %><br>
-      <%= f.input_field :current_password, required: true %><br>
-      <%= f.hint 'We need your current password to confirm your changes.' %>
-    </p>
-  </fieldset>
-
-  <p><%= f.submit "Update" %></p>
-<% end %>
-
-<h3>Cancel my account</h3>
-
-<p>Unhappy? <%= link_to "Cancel my account", registration_path(resource_name), :confirm => "Are you sure?", :method => :delete %>.</p>
-
-<%= link_to "Back", :back %>
+  </div>
+</div>
