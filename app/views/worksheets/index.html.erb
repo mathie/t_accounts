@@ -7,11 +7,22 @@
   one.
 </p>
 
-<dl>
-  <% @worksheets.each do |worksheet| %>
-    <dt><%= link_to worksheet.name, worksheet %></dt>
-    <dd><%= markdown worksheet.narrative %></dd>
-  <% end %>
-</dl>
+<table class="zebra-striped">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
 
-<p><%= link_to "Create a new worksheet", new_worksheet_path %></p>
+  <tbody>
+    <% @worksheets.each do |worksheet| %>
+      <tr>
+        <td><%= link_to worksheet.name, worksheet %></td>
+        <td><%= markdown worksheet.narrative %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<p><%= link_to "Create a new worksheet", new_worksheet_path, class: 'btn primary' %></p>
