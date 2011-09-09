@@ -1,7 +1,49 @@
-<header>
-  <h1>Welcome</h1>
-</header>
+<div class="hero-unit">
+  <h1>T Accounts <small>Learning accounting, one T Account at a time</small></h1>
 
-<p>
-  Say something nice here.
-</p>
+  <p>
+    I'm currently studying to become an Accounting Technician and I'm having
+    to learn a bunch of accounting concepts. I quite like to learn by coding:
+    if I understand enough of a concept to write code that implements it, I
+    probably know enough to pass the exam, too.
+  </p>
+
+  <p>
+    This application implements worksheets full of T Accounts. You create a
+    bunch of accounts, then you create a set of transactions going between
+    those accounts. This allows you to model particular financial transactions
+    and see the double entry bookkeeping effect.
+  </p>
+
+  <p>
+    Plus, the combination of:
+  </p>
+
+  <ul>
+    <li><%= link_to 'Ruby on Rails', 'http://www.rubyonrails.org' %>;</li>
+    <li>Twitter's <%= link_to 'Bootstrap CSS', 'http://twitter.github.com/bootstrap' %>; and</li>
+    <li><%= link_to 'Heroku','http://heroku.com' %></li>
+  </ul>
+  
+  <p>
+    makes it ridiculously easy to build and share wee apps like this that even
+    look pretty out the box.
+  </p>
+
+  <p>
+    If all this sounds a little interesting, feel free to sign up. It's free
+    and I promise I won't steal your data.
+  </p>
+
+  <p class="signup">
+    <%= link_to 'Sign up &raquo;'.html_safe, new_user_registration_path, class: 'btn primary large' %>
+  </p>
+
+  <p>
+    Of course, if you accidentally stumbled across this while you were
+    searching for a real, grown up accounting application that handles all
+    your invoices, bills, bank accounts all the way through to basic accounts
+    production, you'd be much better off taking a look at
+    <%= link_to 'FreeAgent Central', 'http://fre.ag/1250vxcy' %>.
+  </p>
+</div>
