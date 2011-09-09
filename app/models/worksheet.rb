@@ -8,6 +8,8 @@ class Worksheet < ActiveRecord::Base
 
   attr_accessible :name, :narrative
 
+  scope :recent, limit(10).order("updated_at DESC")
+
   def debits_total
     accounts.select { |account| account.debit_balance_carried_down? }.sum(&:balance_carried_down)
   end
