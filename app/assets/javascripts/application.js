@@ -13,10 +13,10 @@
 // FIXME: Turns this into CoffeeScript and move it to _layout.js.coffee.
 $(document).ready(function() {
   $("body").bind("click", function (e) {
-    $('a.menu').parent("li").removeClass("open");
+    $('.dropdown-toggle, .menu').parent("li").removeClass("open");
   });
 
-  $("a.menu").click(function (e) {
+  $(".dropdown-toggle, .menu").click(function (e) {
     var $li = $(this).parent("li").toggleClass('open');
     return false;
   });
