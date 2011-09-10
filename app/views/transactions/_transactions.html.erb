@@ -1,8 +1,8 @@
 <section id="transactions">
-  <table>
+  <%= paginate transactions %>
+  <table class="zebra-striped">
     <thead>
       <tr>
-        <th>&nbsp;</th>
         <th>Date</th>
         <th>Description</th>
         <th class="currency">Amount</th>

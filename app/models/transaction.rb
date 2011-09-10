@@ -5,6 +5,8 @@ class Transaction < ActiveRecord::Base
 
   default_scope order: 'dated_on, position'
 
+  paginates_per 15
+
   validates :dated_on,          presence: true
   validates :description,       presence: true
   validates :debit_account_id,  presence: true
