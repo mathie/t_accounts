@@ -12,11 +12,13 @@ class Account < ActiveRecord::Base
 
   attr_accessible :name, :code
 
+  after_initialize :default_code_to_next_available
+
   def code=(new_code)
     # Only zero-pad the code if it's valid in the first place. We still get
     # called with invalid codes.
     if new_code =~ /^\d+$/
-      write_attribute(:code, "%03d" % new_code)
+      write_attribute(:code, "%03d" % new_code.to_i)
     else
       # Let the validations deal with invalid codes.
       write_attribute(:code, new_code)
@@ -86,4 +88,17 @@ class Account < ActiveRecord::Base
     [credits_subtotal, debits_subtotal].max
   end
   memoize :total
+
+  private
+  def default_code_to_next_available
+    self.code ||= self.class.next_available_code
+  end
+
+  def self.next_available_code
+    highest_assigned_code.succ
+  end
+
+  def self.highest_assigned_code
+    connection.execute("SELECT MAX(code) AS code FROM #{table_name}").first["code"] || '000'
+  end
 end
