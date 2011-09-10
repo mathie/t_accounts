@@ -51,6 +51,8 @@ GEM
     eventmachine (0.12.10)
     execjs (1.2.4)
       multi_json (~> 1.0)
+    faker (1.0.0)
+      i18n (~> 0.4)
     foreman (0.20.0)
       term-ansicolor (~> 1.0.5)
       thor (>= 0.13.6)
@@ -64,6 +66,8 @@ GEM
     jquery-rails (1.0.13)
       railties (~> 3.0)
       thor (~> 0.14)
+    kaminari (0.12.4)
+      rails (>= 3.0.0)
     launchy (2.0.5)
       addressable (~> 2.2.6)
     mail (2.3.0)
@@ -142,9 +146,11 @@ PLATFORMS
 DEPENDENCIES
   coffee-rails (~> 3.1.0)
   devise
+  faker
   foreman
   heroku
   jquery-rails
+  kaminari
   pg
   rails (~> 3.1.0)
   rdiscount

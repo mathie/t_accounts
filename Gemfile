@@ -18,9 +18,11 @@ gem 'rdiscount'
 gem 'foreman'
 gem 'thin'
 gem 'devise'
+gem 'kaminari'
 
 group :development do
   gem 'heroku', require: false
+  gem 'faker'
 end
 
 group :development, :test do

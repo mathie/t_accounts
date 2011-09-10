@@ -7,6 +7,8 @@
   one.
 </p>
 
+<%= paginate @worksheets %>
+
 <table class="zebra-striped">
   <thead>
     <tr>
@@ -24,5 +26,7 @@
     <% end %>
   </tbody>
 </table>
+
+<%= paginate @worksheets %>
 
 <p><%= link_to "Create a new worksheet", new_worksheet_path, class: 'btn primary' %></p>

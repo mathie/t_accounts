@@ -2,7 +2,7 @@ class WorksheetsController < ApplicationController
   respond_to :html
 
   def index
-    @worksheets = current_user.worksheets.order(:name)
+    @worksheets = current_user.worksheets.order(:name).page(params[:page])
     respond_with(@worksheets)
   end
 

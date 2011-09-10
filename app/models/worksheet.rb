@@ -10,6 +10,8 @@ class Worksheet < ActiveRecord::Base
 
   scope :recent, limit(10).order("updated_at DESC")
 
+  paginates_per 5
+
   def debits_total
     accounts.select { |account| account.debit_balance_carried_down? }.sum(&:balance_carried_down)
   end
