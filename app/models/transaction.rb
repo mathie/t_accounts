@@ -18,8 +18,9 @@ class Transaction < ActiveRecord::Base
 
   protected
   def update_position
+    self.class.connection.execute "SET CONSTRAINTS ALL DEFERRED"
     decrement_previous_subsequent_transaction_positions if dated_on_was.present?
-    self.position = max_position_for_dated_on
+    self.position = max_position_for_dated_on + 1
     increment_subsequent_transaction_positions
   end
 
@@ -28,15 +29,26 @@ class Transaction < ActiveRecord::Base
   end
 
   def max_position_for_dated_on
-    max_position = self.class.unscoped.find(:first,
-      select:     'MAX(position) as max_position',
-      conditions: ['worksheet_id = ? AND dated_on <= ?', worksheet_id, dated_on]
-    ).max_position
+    max_position = self.class.unscoped.
+      select('MAX(position) as max_position').
+      where('worksheet_id = ? AND dated_on <= ?', worksheet_id, dated_on).
+      first.try(:max_position)
 
-    (max_position || '0').to_i + 1
+    (max_position || '0').to_i
   end
 
+  # FIXME: This is crazy inefficient. What I want to do is:
+  #
+  #   UPDATE transactions SET position = position + 1 WHERE worksheet_id = ? AND position >= ?
+  #
+  # but sadly I can't because it violates the uniqueness constraint on
+  # (worksheet_id, position). Normally, the workaround would be to set the
+  # constraint to be deferred 'til the end of the transaction, but we can't do
+  # that with the Rails schema dumper and it seems too much like hard work to
+  # work around that for now.
   def increment_subsequent_transaction_positions
-    self.class.update_all 'position = position + 1', ['worksheet_id = ? AND dated_on > ?', worksheet_id, dated_on]
+    self.class.unscoped.where('worksheet_id = ? AND position >= ?', worksheet_id, position).order('position DESC').each do |transaction|
+      transaction.update_attribute :position, transaction.position + 1
+    end
   end
 end
