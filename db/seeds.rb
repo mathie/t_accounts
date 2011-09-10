@@ -12,7 +12,7 @@ unless User.exists?(email: 'mathie@woss.name')
 
     # Create a few accounts
     accounts = []
-    rand(10).times do
+    (rand(10) + 5).times do
       accounts << worksheet.accounts.create!(name: Faker::Company.bs)
     end
 
