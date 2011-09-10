@@ -7,16 +7,13 @@ class WorksheetsController < ApplicationController
   end
 
   def show
-    @worksheet = current_user.worksheets.includes(:accounts, { transactions: [:debit_account, :credit_account] }).find(params[:id])
+    @worksheet = current_user.worksheets.find(params[:id])
     respond_with(@worksheet)
   end
 
   def trial_balance
     @worksheet = current_user.worksheets.find(params[:id])
-    respond_to do |format|
-      format.js { render partial: 'trial_balance', content_type: :html, locals: { worksheet: @worksheet } }
-      format.html { redirect_to @worksheet }
-    end
+    respond_with(@worksheet)
   end
 
   def new
