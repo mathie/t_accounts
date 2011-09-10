@@ -7,7 +7,6 @@
 //= require modernizr/modernizr
 //= require jquery
 //= require jquery_ujs
-//= require jquery-ui
 //= require_tree .
 
 // FIXME: Turns this into CoffeeScript and move it to _layout.js.coffee.
