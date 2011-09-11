@@ -4,10 +4,8 @@ class AccountsController < ApplicationController
   before_filter :load_worksheet
 
   def index
-    respond_to do |format|
-      format.js { render partial: 'accounts', content_type: :html, locals: { accounts: @worksheet.accounts } }
-      format.html { redirect_to @worksheet }
-    end
+    @accounts = @worksheet.accounts
+    respond_with(@accounts)
   end
 
   def new

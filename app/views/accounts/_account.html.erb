@@ -1,4 +1,4 @@
-  <table>
+  <table class="zebra-striped">
     <caption><%= link_to account.name, [:edit, account.worksheet, account] %> Account (<%= account.code %>)</caption>
     <thead>
       <tr class="drcr">
@@ -8,11 +8,11 @@
 
       <tr>
         <th class="dr">Date</th>
-        <th class="dr" colspan="2">&nbsp;</th>
+        <th class="dr">&nbsp;</th>
         <th class="dr currency">&pound;</th>
 
         <th class="cr">Date</th>
-        <th class="cr" colspan="2">&nbsp;</th>
+        <th class="cr">&nbsp;</th>
         <th class="cr currency">&pound;</th>
       </tr>
     </thead>
@@ -70,18 +70,16 @@
       <% account.zipped_transactions.each do |debit_transaction, credit_transaction| %>
         <tr>
           <% if debit_transaction.present? %>
-            <td class="dr"><time datetime="<%= debit_transaction.dated_on.to_s(:db) %>"><%= debit_transaction.dated_on.to_s(:short) %></time></td>
+            <td class="dr"><time datetime="<%= debit_transaction.dated_on.to_s(:db) %>"><%= debit_transaction.dated_on.to_s(:rfc822) %></time></td>
             <td class="dr"><%= debit_transaction.description %></td>
-            <td class="dr">(<%= debit_transaction.position %>)</td>
             <td class="dr currency"><%= number_to_currency debit_transaction.amount %></td>
           <% else %>
             <td class="dr currency" colspan="4">&nbsp;</td>
           <% end %>
 
           <% if credit_transaction.present? %>
-            <td class="cr"><time datetime="<%= credit_transaction.dated_on.to_s(:db) %>"><%= credit_transaction.dated_on.to_s(:short) %></time></td>
+            <td class="cr"><time datetime="<%= credit_transaction.dated_on.to_s(:db) %>"><%= credit_transaction.dated_on.to_s(:rfc822) %></time></td>
             <td class="cr"><%= credit_transaction.description %></td>
-            <td class="cr">(<%= credit_transaction.position %>)</td>
             <td class="cr currency"><%= number_to_currency credit_transaction.amount %></td>
           <% else %>
             <td class="cr currency" colspan="4">&nbsp;</td>
