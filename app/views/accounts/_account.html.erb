@@ -1,90 +1,90 @@
-  <table class="zebra-striped">
-    <caption><%= link_to account.name, [:edit, account.worksheet, account] %> Account (<%= account.code %>)</caption>
-    <thead>
-      <tr class="drcr">
-        <th colspan="4" class="dr">Dr</th>
-        <th colspan="4">Cr</th>
-      </tr>
+<table class="zebra-striped">
+  <caption><%= link_to account.name, [:edit, account.worksheet, account] %> Account (<%= account.code %>)</caption>
+  <thead>
+    <tr class="drcr">
+      <th colspan="3" class="dr">Dr</th>
+      <th colspan="3">Cr</th>
+    </tr>
 
+    <tr>
+      <th class="dr">Date</th>
+      <th class="dr">Description</th>
+      <th class="dr currency">&pound;</th>
+
+      <th class="cr">Date</th>
+      <th class="cr">Description</th>
+      <th class="cr currency">&pound;</th>
+    </tr>
+  </thead>
+
+  <tfoot>
+    <tr>
+      <td class="dr" colspan="2" style="text-align: right">Subtotal debits</td>
+      <td class="dr currency"><%= number_to_currency account.debits_subtotal %></td>
+
+      <td class="cr" colspan="2" style="text-align: right">Subtotal credits</td>
+      <td class="cr currency"><%= number_to_currency account.credits_subtotal %></td>
+    </tr>
+
+    <% if account.balance_carried_down? %>
       <tr>
-        <th class="dr">Date</th>
-        <th class="dr">&nbsp;</th>
-        <th class="dr currency">&pound;</th>
-
-        <th class="cr">Date</th>
-        <th class="cr">&nbsp;</th>
-        <th class="cr currency">&pound;</th>
-      </tr>
-    </thead>
-
-    <tfoot>
-      <tr>
-        <td class="dr" colspan="3">Subtotal debits</td>
-        <td class="dr currency"><%= number_to_currency account.debits_subtotal %></td>
-
-        <td class="cr" colspan="3">Subtotal credits</td>
-        <td class="cr currency"><%= number_to_currency account.credits_subtotal %></td>
-      </tr>
-
-      <% if account.balance_carried_down? %>
-        <tr>
-          <% if account.debit_balance_carried_down? %>
-            <td class="dr" colspan="3">Balance carried down</td>
-            <td class="dr currency"><%= number_to_currency account.balance_carried_down %></td>
-          <% else %>
-            <td class="dr currency" colspan="4">&nbsp;</td>
-          <% end %>
-
-          <% if account.credit_balance_carried_down? %>
-            <td class="cr" colspan="3">Balance carried down</td>
-            <td class="cr currency"><%= number_to_currency account.balance_carried_down %></td>
-          <% else %>
-            <td class="cr currency" colspan="4">&nbsp;</td>
-          <% end %>
-        </tr>
-      <% end %>
-      <tr class="totals">
-        <td class="dr" colspan="3">Total</td>
-        <td class="dr currency total"><%= number_to_currency account.total %></td>
-
-        <td class="cr" colspan="3">Total</td>
-        <td class="cr currency total"><%= number_to_currency account.total %></td>
-      </tr>
-
-      <tr>
-        <% if account.credit_balance_brought_down? %>
-          <td class="dr currency" colspan="4">&nbsp;</td>
-
-          <td class="cr" colspan="3">Balance brought down</td>
-          <td class="cr currency"><%= number_to_currency account.balance_brought_down %></td>
+        <% if account.debit_balance_carried_down? %>
+          <td class="dr" colspan="2" style="text-align: right">Balance carried down</td>
+          <td class="dr currency"><%= number_to_currency account.balance_carried_down %></td>
         <% else %>
-          <td class="dr" colspan="3">Balance brought down</td>
-          <td class="dr currency"><%= number_to_currency account.balance_brought_down %></td>
+          <td class="dr currency" colspan="3">&nbsp;</td>
+        <% end %>
 
-          <td class="cr currency" colspan="4">&nbsp;</td>
+        <% if account.credit_balance_carried_down? %>
+          <td class="cr" colspan="2" style="text-align: right">Balance carried down</td>
+          <td class="cr currency"><%= number_to_currency account.balance_carried_down %></td>
+        <% else %>
+          <td class="cr currency" colspan="3">&nbsp;</td>
         <% end %>
       </tr>
-    </tfoot>
+    <% end %>
+    <tr class="totals">
+      <td class="dr" colspan="2" style="text-align: right">Total</td>
+      <td class="dr currency total"><%= number_to_currency account.total %></td>
 
-    <tbody>
-      <% account.zipped_transactions.each do |debit_transaction, credit_transaction| %>
-        <tr>
-          <% if debit_transaction.present? %>
-            <td class="dr"><time datetime="<%= debit_transaction.dated_on.to_s(:db) %>"><%= debit_transaction.dated_on.to_s(:rfc822) %></time></td>
-            <td class="dr"><%= debit_transaction.description %></td>
-            <td class="dr currency"><%= number_to_currency debit_transaction.amount %></td>
-          <% else %>
-            <td class="dr currency" colspan="4">&nbsp;</td>
-          <% end %>
+      <td class="cr" colspan="2" style="text-align: right">Total</td>
+      <td class="cr currency total"><%= number_to_currency account.total %></td>
+    </tr>
 
-          <% if credit_transaction.present? %>
-            <td class="cr"><time datetime="<%= credit_transaction.dated_on.to_s(:db) %>"><%= credit_transaction.dated_on.to_s(:rfc822) %></time></td>
-            <td class="cr"><%= credit_transaction.description %></td>
-            <td class="cr currency"><%= number_to_currency credit_transaction.amount %></td>
-          <% else %>
-            <td class="cr currency" colspan="4">&nbsp;</td>
-          <% end %>
-        </tr>
+    <tr>
+      <% if account.credit_balance_brought_down? %>
+        <td class="dr currency" colspan="3">&nbsp;</td>
+
+        <td class="cr" colspan="2" style="text-align: right">Balance brought down</td>
+        <td class="cr currency"><%= number_to_currency account.balance_brought_down %></td>
+      <% else %>
+        <td class="dr" colspan="2" style="text-align: right">Balance brought down</td>
+        <td class="dr currency"><%= number_to_currency account.balance_brought_down %></td>
+
+        <td class="cr currency" colspan="3">&nbsp;</td>
       <% end %>
-    </tbody>
-  </table>
+    </tr>
+  </tfoot>
+
+  <tbody>
+    <% account.zipped_transactions.each do |debit_transaction, credit_transaction| %>
+      <tr>
+        <% if debit_transaction.present? %>
+          <td class="dr"><time datetime="<%= debit_transaction.dated_on.to_s(:db) %>"><%= debit_transaction.dated_on.to_s(:rfc822) %></time></td>
+          <td class="dr"><%= debit_transaction.description %></td>
+          <td class="dr currency"><%= number_to_currency debit_transaction.amount %></td>
+        <% else %>
+          <td class="dr currency" colspan="3">&nbsp;</td>
+        <% end %>
+
+        <% if credit_transaction.present? %>
+          <td class="cr"><time datetime="<%= credit_transaction.dated_on.to_s(:db) %>"><%= credit_transaction.dated_on.to_s(:rfc822) %></time></td>
+          <td class="cr"><%= credit_transaction.description %></td>
+          <td class="cr currency"><%= number_to_currency credit_transaction.amount %></td>
+        <% else %>
+          <td class="cr currency" colspan="3">&nbsp;</td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
