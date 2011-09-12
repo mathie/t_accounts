@@ -91,14 +91,14 @@ class Account < ActiveRecord::Base
 
   private
   def default_code_to_next_available
-    self.code ||= self.class.next_available_code
+    self.code ||= self.class.next_available_code(worksheet_id)
   end
 
-  def self.next_available_code
-    highest_assigned_code.succ
+  def self.next_available_code(worksheet_id)
+    highest_assigned_code(worksheet_id).succ
   end
 
-  def self.highest_assigned_code
-    connection.execute("SELECT MAX(code) AS code FROM #{table_name}").first["code"] || '000'
+  def self.highest_assigned_code(worksheet_id)
+    connection.execute("SELECT MAX(code) AS code FROM #{table_name} WHERE worksheet_id = #{connection.quote worksheet_id}").first["code"] || '000'
   end
 end
