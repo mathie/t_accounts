@@ -17,13 +17,11 @@ end
 gem 'jquery-rails'
 gem 'simple_form'
 gem 'rdiscount'
-gem 'foreman'
 gem 'thin'
 gem 'devise', '~> 1.4.4'
 gem 'kaminari'
 
 group :development do
-  gem 'heroku', require: false
   gem 'faker'
 end
 
