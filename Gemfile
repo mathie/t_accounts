@@ -1,5 +1,7 @@
 source 'http://rubygems.org'
 
+ruby File.read(File.expand_path('../.ruby-version', __FILE__)).chomp
+
 gem 'rails', '~>3.1.0'
 gem 'pg'
 
