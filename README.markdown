@@ -19,7 +19,8 @@ new. :)
 
 3. Install dependencies with bundler: `bundle install`
 
-4. Create the relevant databases: `bundle exec rake db:create:all`
+4. Create the database user: `createuser -s t_accounts`, then create the
+   relevant databases: `bundle exec rake db:create:all`
 
 5. Load the schema and seed data into your development database:
    `bundle exec rake db:reset`

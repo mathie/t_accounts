@@ -17,7 +17,7 @@ gem 'simple_form'
 gem 'rdiscount'
 gem 'foreman'
 gem 'thin'
-gem 'devise'
+gem 'devise', '~> 1.4.5'
 gem 'kaminari'
 
 group :development do

@@ -43,7 +43,7 @@ GEM
       execjs
     coffee-script-source (1.1.2)
     daemons (1.1.4)
-    devise (1.4.4)
+    devise (1.4.9)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.0.3)
       warden (~> 1.0.3)
@@ -76,7 +76,7 @@ GEM
       treetop (~> 1.4.8)
     mime-types (1.16)
     multi_json (1.0.3)
-    orm_adapter (0.0.5)
+    orm_adapter (0.0.7)
     pg (0.11.0)
     polyglot (0.3.2)
     rack (1.3.2)
@@ -120,7 +120,7 @@ GEM
     sprockets (2.0.0)
       hike (~> 1.2)
       rack (~> 1.0)
-      tilt (!= 1.3.0, ~> 1.1)
+      tilt (~> 1.1, != 1.3.0)
     term-ansicolor (1.0.6)
     thin (1.2.11)
       daemons (>= 1.0.9)
@@ -137,7 +137,7 @@ GEM
     uglifier (1.0.3)
       execjs (>= 0.3.0)
       multi_json (>= 1.0.2)
-    warden (1.0.5)
+    warden (1.0.6)
       rack (>= 1.0)
 
 PLATFORMS
@@ -145,7 +145,7 @@ PLATFORMS
 
 DEPENDENCIES
   coffee-rails (~> 3.1.0)
-  devise
+  devise (~> 1.4.5)
   faker
   foreman
   heroku
